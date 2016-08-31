@@ -1,0 +1,93 @@
+﻿<UserControl x:Class="_3750BlackJack.CardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:_3750BlackJack"
+             mc:Ignorable="d" 
+             d:DesignHeight="175" d:DesignWidth="113">
+    <UserControl.Resources>
+        <Style TargetType="UserControl">
+            <Setter Property="Content" Value="CardBack"/>
+            <Setter Property="Background" Value="White"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Visible}" Value="True">
+                    <Setter Property="Content" Value="CardFront"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <ControlTemplate x:Key="CardBack">
+            <Grid>
+                <Image Source="Images/CardBack.png" Stretch="UniformToFill"  />
+            </Grid>
+        </ControlTemplate>
+        
+        <ControlTemplate x:Key="CardFace">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+
+                <TextBox  Text="{Binding Path=Value}" Grid.Column="0" Grid.Row="0" Background="{x:Null}" FontSize="60" TextAlignment="Center">
+                    <TextBox.Style>
+                        <Style TargetType="{x:Type TextBox}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=Suit}" Value="Spade">
+                                    <Setter Property="Foreground" Value="Black"/>
+                                </DataTrigger>
+
+                                <DataTrigger Binding="{Binding Path=Suit}" Value="Club">
+                                    <Setter Property="Foreground" Value="Black"/>
+                                </DataTrigger>
+
+                                <DataTrigger Binding="{Binding Path=Suit}" Value="Diamond">
+                                    <Setter Property="Foreground" Value="Red"/>
+                                </DataTrigger>
+
+                                <DataTrigger Binding="{Binding Path=Suit}" Value="Heart">
+                                    <Setter Property="Foreground" Value="Red"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+
+                <Image x:Name="image" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                    <Image.Style>
+                        <Style TargetType="{x:Type Image}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=Suit}" Value="Spade">
+                                    <Setter Property="Source" Value="Images/spade.png"/>
+                                </DataTrigger>
+
+                                <DataTrigger Binding="{Binding Path=Suit}" Value="Club">
+                                    <Setter Property="Source" Value="Images/club.png"/>
+                                </DataTrigger>
+
+                                <DataTrigger Binding="{Binding Path=Suit}" Value="Diamond">
+                                    <Setter Property="Source" Value="Images/diamond.png"/>
+                                </DataTrigger>
+
+                                <DataTrigger Binding="{Binding Path=Suit}" Value="Heart">
+                                    <Setter Property="Source" Value="Images/heart.png"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+            </Grid>
+        </ControlTemplate>
+        
+    </UserControl.Resources>
+
+    <Border BorderBrush="Black">
+    </Border>
+</UserControl>

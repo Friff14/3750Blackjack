@@ -5,6 +5,50 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_3750BlackJack"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid/>
+        Title="Black Jack (Group 4)" MinHeight="500" MinWidth="800" Background="#FF166E08">
+
+    <Window.DataContext>
+        <local:GameMaster/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <DataTemplate x:Key="CardTemplate" DataType="{x:Type local:Card}">
+            <local:CardView />
+        </DataTemplate>
+    </Window.Resources>
+
+    <DockPanel LastChildFill="True">
+        <ItemsControl  
+            x:Name="DealerHand"
+            DockPanel.Dock="Top"           
+            ItemTemplate="{StaticResource CardTemplate}" 
+            ItemsSource="{Binding Dealer.Cards}" 
+            Height="175">
+            
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+
+        <ItemsControl 
+            x:Name="UserHand"
+            DockPanel.Dock="Bottom" 
+            ItemTemplate="{StaticResource CardTemplate}" 
+            ItemsSource="{Binding Player.Cards}" 
+            Height="175">
+
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Height="50" Width="100" Margin="20">Hit</Button>
+            <Button Height="50" Width="100" Margin="20">Stand</Button>
+        </StackPanel>
+    </DockPanel>
 </Window>

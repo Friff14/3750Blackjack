@@ -11,6 +11,15 @@ namespace _3750BlackJack
 {
     class GameMaster : INotifyPropertyChanged
     {
+        /// <summary>
+        /// Consturctor for GameMaster object
+        /// </summary>
+        public GameMaster()
+        {
+            Wallet = 1.00;
+
+        }
+
         #region Properties
         private double _Wallet;
 
@@ -26,7 +35,7 @@ namespace _3750BlackJack
             set
             {
                 _Wallet = value;
-                OnPropertyChanged();
+                OnPropertyChanged(); // Sends an event to let the UI know to update. Should usually be last line of property.
             }
 
         }
@@ -84,9 +93,12 @@ namespace _3750BlackJack
             }
         }
 
+        /// <summary>
+        /// Totals the 2 hands and determines a winner. Initiates next round.
+        /// </summary>
         public void Resolve()
         {
-
+            
         }
 
         #endregion //Properties
