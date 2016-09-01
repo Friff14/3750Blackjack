@@ -8,6 +8,12 @@ namespace _3750BlackJack
 {
     class Deck
     {
+
+        public Deck()
+        {
+            Cards = new List<Card>();
+            BuildDeck();
+        }
         #region Properties
         
         /// <summary>

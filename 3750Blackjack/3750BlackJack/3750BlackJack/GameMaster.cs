@@ -16,8 +16,11 @@ namespace _3750BlackJack
         /// </summary>
         public GameMaster()
         {
+            Dealer = new Hand();
+            Player = new Hand();
             Wallet = 1.00;
-
+            MinBet = .02;
+            MaxBet = .25;
         }
 
         #region Properties
@@ -84,15 +87,53 @@ namespace _3750BlackJack
         {
             get
             {
-                return _Player;
+                return _Dealer;
             }
             set
             {
-                _Player = value;
+                _Dealer = value;
                 OnPropertyChanged();
             }
         }
 
+        private double _MinBet;
+
+        /// <summary>
+        /// The value of the minimum allowable bet.
+        /// </summary>
+        public double MinBet
+        {
+            get
+            {
+                return _MinBet;
+            }
+            set
+            {
+                _MinBet = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double _MaxBet;
+
+        /// <summary>
+        /// The value of the maximum allowable bet.
+        /// </summary>
+        public double MaxBet
+        {
+            get
+            {
+                return _MaxBet;
+            }
+            set
+            {
+                _MaxBet = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion //Properties
+
+        #region Methods
         /// <summary>
         /// Totals the 2 hands and determines a winner. Initiates next round.
         /// </summary>
@@ -101,7 +142,7 @@ namespace _3750BlackJack
             
         }
 
-        #endregion //Properties
+        #endregion // Methods
 
         #region INotifyPropertyChanged Members
 

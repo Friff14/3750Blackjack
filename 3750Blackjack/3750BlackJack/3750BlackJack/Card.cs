@@ -8,7 +8,15 @@ namespace _3750BlackJack
 {
     class Card
     {
-        //public enum suit {get; set;}
+        public enum CardSuit
+        {
+            Spade,
+            Club,
+            Heart,
+            Diamond
+        }
+
+        public CardSuit Suit {get; set;}
         public int Value { get; set; }
         public bool Visible { get; set; }
     }
