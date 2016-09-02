@@ -33,19 +33,37 @@ namespace _3750BlackJack
             }
         }
 
-        private int _Count;
 
-        public int Count
+        public int Count()
         {
-            get
-            {
-                return _Count;
-            }
-            set
-            {
-                _Count = value;
-                OnPropertyChanged();
-            }
+            int count = 0;
+            int aces = 0;
+            foreach (Card card in Cards)
+                {
+
+                if (card.Value == 1)
+                    {
+                        count += 11;
+                        aces++;
+                    }
+
+                else if (card.Value < 10 && card.Value > 1)
+                    {
+                        count += card.Value;
+                    }
+
+                else if (card.Value > 10)
+                    {
+                        count += 10;
+                    }
+
+                }
+            if(count > 21)
+                {
+                    count -= 10 * aces;
+                }
+
+            return count;
         }
 
         #endregion // Properties
