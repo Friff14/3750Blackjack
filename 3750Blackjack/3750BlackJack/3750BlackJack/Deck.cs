@@ -62,14 +62,18 @@ namespace _3750BlackJack
         private void BuildDeck()
         {
             //for each Suit
-            for(int i = 0; i < 4; i++)
+            for (int i = 0; i < 4; i++)
             {
                 //for each Value
-                for(int j = 0; j < 14; j++)
+                for (int j = 0; j < 13; j++)
                 {
                     //add a the next new card
                     //TODO: wait until the Constructor for Card is finished to add property arguments. 
-                    Cards.Add(new Card());
+                    Card newCard = new Card() {
+                        Value = j + 1,
+                        Suit = (Card.CardSuit)i
+                    };
+                    Cards.Add(newCard);
                 }
             }
         }

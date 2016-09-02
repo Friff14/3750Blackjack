@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
@@ -13,14 +14,14 @@ namespace _3750BlackJack
     {
         public Hand()
         {
-            _Cards = new List<Card>();
+            _Cards = new ObservableCollection<Card>();
         }
 
         #region Properties
 
-        private List<Card> _Cards;
+        private ObservableCollection<Card> _Cards;
 
-        public List<Card> Cards
+        public ObservableCollection<Card> Cards
         {
             get
             {

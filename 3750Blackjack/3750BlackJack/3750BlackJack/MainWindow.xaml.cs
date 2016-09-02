@@ -24,5 +24,10 @@ namespace _3750BlackJack
         {
             InitializeComponent();
         }
+
+        private void Button_Hit(object sender, RoutedEventArgs e)
+        {
+            ((GameMaster)DataContext).Hit();
+        }
     }
 }

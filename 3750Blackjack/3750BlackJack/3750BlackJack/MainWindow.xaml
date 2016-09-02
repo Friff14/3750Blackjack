@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_3750BlackJack"
         mc:Ignorable="d"
-        Title="Black Jack (Group 4)" MinHeight="500" MinWidth="800" Background="#FF166E08">
+        Title="Black Jack (Group 4)" MinHeight="600" MinWidth="900" Background="#FF166E08">
 
     <Window.DataContext>
         <local:GameMaster/>
@@ -13,95 +13,94 @@
 
     <Window.Resources>
         <DataTemplate x:Key="CardFront" DataType="{x:Type local:Card}">
-            <Border BorderBrush="Black">
-                <Grid Background="White" Height="175" Width="113">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="1*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                    </Grid.RowDefinitions>
 
-                    <TextBox  Text="{Binding Path=Value}" Grid.Column="0" Grid.Row="0" Background="{x:Null}" FontSize="36" TextAlignment="Center">
-                        <TextBox.Style>
-                            <Style TargetType="{x:Type TextBox}">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Path=Suit}" Value="Spade">
-                                        <Setter Property="Foreground" Value="Black"/>
-                                    </DataTrigger>
+            <Grid Background="White" Height="160" Width="118" Margin="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
 
-                                    <DataTrigger Binding="{Binding Path=Suit}" Value="Club">
-                                        <Setter Property="Foreground" Value="Black"/>
-                                    </DataTrigger>
+                <TextBox  Text="{Binding Path=Value}" Grid.Column="0" Grid.Row="0" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" TextAlignment="Center" IsReadOnly="True" Cursor="Arrow" IsTabStop="False" Focusable="False" SelectionBrush="{x:Null}" SelectionOpacity="0" BorderThickness="0">
+                    <TextBox.Style>
+                        <Style TargetType="{x:Type TextBox}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=Suit}" Value="Spade">
+                                    <Setter Property="Foreground" Value="Black"/>
+                                </DataTrigger>
 
-                                    <DataTrigger Binding="{Binding Path=Suit}" Value="Diamond">
-                                        <Setter Property="Foreground" Value="Red"/>
-                                    </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=Suit}" Value="Club">
+                                    <Setter Property="Foreground" Value="Black"/>
+                                </DataTrigger>
 
-                                    <DataTrigger Binding="{Binding Path=Suit}" Value="Heart">
-                                        <Setter Property="Foreground" Value="Red"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBox.Style>
-                    </TextBox>
+                                <DataTrigger Binding="{Binding Path=Suit}" Value="Diamond">
+                                    <Setter Property="Foreground" Value="Red"/>
+                                </DataTrigger>
 
-                    <Image x:Name="image" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
-                        <Image.Style>
-                            <Style TargetType="{x:Type Image}">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Path=Suit}" Value="Spade">
-                                        <Setter Property="Source" Value="Images/spade.png"/>
-                                    </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=Suit}" Value="Heart">
+                                    <Setter Property="Foreground" Value="Red"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
 
-                                    <DataTrigger Binding="{Binding Path=Suit}" Value="Club">
-                                        <Setter Property="Source" Value="Images/club.png"/>
-                                    </DataTrigger>
+                <Image x:Name="image" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                    <Image.Style>
+                        <Style TargetType="{x:Type Image}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=Suit}" Value="Spade">
+                                    <Setter Property="Source" Value="Images/spade.png"/>
+                                </DataTrigger>
 
-                                    <DataTrigger Binding="{Binding Path=Suit}" Value="Diamond">
-                                        <Setter Property="Source" Value="Images/diamond.png"/>
-                                    </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=Suit}" Value="Club">
+                                    <Setter Property="Source" Value="Images/club.png"/>
+                                </DataTrigger>
 
-                                    <DataTrigger Binding="{Binding Path=Suit}" Value="Heart">
-                                        <Setter Property="Source" Value="Images/heart.png"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Image.Style>
-                    </Image>
+                                <DataTrigger Binding="{Binding Path=Suit}" Value="Diamond">
+                                    <Setter Property="Source" Value="Images/diamond.png"/>
+                                </DataTrigger>
 
-                    <TextBox  Text="{Binding Path=Value}" Grid.Column="2" Grid.Row="2" Background="{x:Null}" FontSize="36" TextAlignment="Center">
-                        <TextBox.Style>
-                            <Style TargetType="{x:Type TextBox}">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Path=Suit}" Value="Spade">
-                                        <Setter Property="Foreground" Value="Black"/>
-                                    </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=Suit}" Value="Heart">
+                                    <Setter Property="Source" Value="Images/heart.png"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
 
-                                    <DataTrigger Binding="{Binding Path=Suit}" Value="Club">
-                                        <Setter Property="Foreground" Value="Black"/>
-                                    </DataTrigger>
+                <TextBox  Text="{Binding Path=Value}" Grid.Column="2" Grid.Row="2" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" TextAlignment="Center" IsReadOnly="True" Cursor="Arrow" IsTabStop="False" Focusable="False" SelectionBrush="{x:Null}" SelectionOpacity="0" BorderThickness="0">
+                    <TextBox.Style>
+                        <Style TargetType="{x:Type TextBox}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=Suit}" Value="Spade">
+                                    <Setter Property="Foreground" Value="Black"/>
+                                </DataTrigger>
 
-                                    <DataTrigger Binding="{Binding Path=Suit}" Value="Diamond">
-                                        <Setter Property="Foreground" Value="Red"/>
-                                    </DataTrigger>
+                                <DataTrigger Binding="{Binding Path=Suit}" Value="Club">
+                                    <Setter Property="Foreground" Value="Black"/>
+                                </DataTrigger>
 
-                                    <DataTrigger Binding="{Binding Path=Suit}" Value="Heart">
-                                        <Setter Property="Foreground" Value="Red"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBox.Style>
-                    </TextBox>
-                </Grid>
-            </Border>
+                                <DataTrigger Binding="{Binding Path=Suit}" Value="Diamond">
+                                    <Setter Property="Foreground" Value="Red"/>
+                                </DataTrigger>
+
+                                <DataTrigger Binding="{Binding Path=Suit}" Value="Heart">
+                                    <Setter Property="Foreground" Value="Red"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
+            </Grid>
         </DataTemplate>
         <DataTemplate x:Key="CardBack" DataType="{x:Type local:Card}">
-            <Image Height="175" Width="113" Source="Images/CardBack.png"/>
+            <Image Height="175" Width="120" Stretch="Fill" Source="Images/CardBack.png"/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type local:Card}" >
             <ContentControl Content="{Binding}">
@@ -123,8 +122,7 @@
         <ItemsControl x:Name="DealerHand" DockPanel.Dock="Top" ItemsSource="{Binding Dealer.Cards}" Height="175">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <VirtualizingStackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    </VirtualizingStackPanel>
+                    <VirtualizingStackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>
@@ -132,8 +130,7 @@
         <ItemsControl x:Name="PlayerHand" DockPanel.Dock="Bottom" ItemsSource="{Binding Player.Cards}" Height="175">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <VirtualizingStackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    </VirtualizingStackPanel>
+                    <VirtualizingStackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
         </ItemsControl>
@@ -152,7 +149,7 @@
         <TextBlock DockPanel.Dock="Right" Background="White" Width="100"/>
         
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Height="50" Width="100" Margin="20">Hit</Button>
+            <Button Height="50" Width="100" Margin="20" Click="Button_Hit">Hit</Button>
             <Button Height="50" Width="100" Margin="20">Stand</Button>
         </StackPanel>
     </DockPanel>

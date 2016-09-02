@@ -16,14 +16,23 @@ namespace _3750BlackJack
         /// </summary>
         public GameMaster()
         {
+            CardDeck = new Deck();
+            CardDeck.Shuffle();
             Dealer = new Hand();
             Player = new Hand();
             Wallet = 1.00;
             MinBet = .02;
             MaxBet = .25;
+
+            Dealer.Cards.Add(CardDeck.Draw(false));
+            Dealer.Cards.Add(CardDeck.Draw(true));
+            Player.Cards.Add(CardDeck.Draw(true));
+            Player.Cards.Add(CardDeck.Draw(true));
         }
 
         #region Properties
+        private Deck CardDeck;
+
         private double _Wallet;
 
         /// <summary>
@@ -140,6 +149,12 @@ namespace _3750BlackJack
         public void Resolve()
         {
             
+        }
+
+        public void Hit()
+        {
+            Player.Cards.Add(CardDeck.Draw(true));
+            OnPropertyChanged("Player");
         }
 
         #endregion // Methods
