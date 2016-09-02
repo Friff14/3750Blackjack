@@ -157,6 +157,10 @@ namespace _3750BlackJack
             OnPropertyChanged("Player");
         }
 
+        public void Stay()
+        {
+
+        }
         #endregion // Methods
 
         #region INotifyPropertyChanged Members

@@ -29,5 +29,10 @@ namespace _3750BlackJack
         {
             ((GameMaster)DataContext).Hit();
         }
+
+        private void Button_Stay(object sender, RoutedEventArgs e)
+        {
+            ((GameMaster)DataContext).Stay();
+        }
     }
 }
