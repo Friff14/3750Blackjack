@@ -51,16 +51,7 @@ namespace _3750BlackJack
         #endregion // Properties
 
         #region Methods
-        public void Hit()
-        {
-            Deck deck = new Deck();
-            Cards.Add(deck.Draw());
-        }
-
-        public void Stay()
-        {
-
-        }
+      
 
         #endregion // Methods
 
