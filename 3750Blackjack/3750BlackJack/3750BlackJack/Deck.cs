@@ -8,7 +8,9 @@ namespace _3750BlackJack
 {
     class Deck
     {
-
+        /// <summary>
+        /// Default Constructor
+        /// </summary>
         public Deck()
         {
             Cards = new List<Card>();
@@ -26,13 +28,15 @@ namespace _3750BlackJack
         #region Methods
 
         /// <summary>
-        /// Draws a card from the top of the deck.
+        /// draws a card from the deck. determine visibility with flag
         /// </summary>
-        /// <returns></returns>
-        public Card Draw()
+        /// <param name="visible">true for face up, false for facedown</param>
+        /// <returns>Returns a card from top of the deck</returns>
+        public Card Draw(bool visible)
         {
             //remove card on top and return it.
             Card cardOnTop = Cards[0];
+            cardOnTop.Visible = visible;
             Cards.Remove(Cards[0]);
             return cardOnTop;
         }
