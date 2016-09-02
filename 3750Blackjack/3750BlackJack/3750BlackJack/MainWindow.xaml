@@ -145,9 +145,9 @@
                 </MultiBinding>
             </TextBlock.Text>
         </TextBlock>
-        
-        <TextBlock DockPanel.Dock="Right" Background="White" Width="100"/>
-        
+
+        <TextBlock DockPanel.Dock="Right" Background="White" Width="100" Text="{Binding Path=Player.Count}"/>
+
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button Height="50" Width="100" Margin="20" Click="Button_Hit">Hit</Button>
             <Button Height="50" Width="100" Margin="20" Click="Button_Stay">Stand</Button>
