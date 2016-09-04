@@ -148,7 +148,33 @@ namespace _3750BlackJack
         /// </summary>
         public void Resolve()
         {
-            
+            if (_Player.Count() > 21)
+            {
+                //dealer wins
+                //return
+            }
+            else if (_Dealer.Count() > 21)
+            {
+                //player wins
+                //add bet * 1.5
+                //return
+            }
+            else if (_Player.Count() > Dealer.Count())
+            {
+                //player wins
+                //add bet * 1.5
+                //return
+            }
+            else if (_Player.Count() < Dealer.Count())
+            {
+                //dealer wins
+                //return
+            }
+            else if (_Player.Count() == Dealer.Count())
+            {
+                //tie 
+                //add bet back to wallet
+            }
         }
 
         public void Hit()
@@ -159,7 +185,13 @@ namespace _3750BlackJack
 
         public void Stay()
         {
-
+            //TODO: dealers first card should now be visible
+            Dealer.Cards[0].Visible = true;        
+            while (_Dealer.Count() <= 16)
+            {
+                Dealer.Cards.Add(CardDeck.Draw(true));
+                OnPropertyChanged("Dealer");
+            }
         }
         #endregion // Methods
 
