@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace _3750BlackJack
 {
-    class Hand :INotifyPropertyChanged
+    class Hand : INotifyPropertyChanged
     {
         public Hand()
         {
@@ -23,10 +23,7 @@ namespace _3750BlackJack
 
         public ObservableCollection<Card> Cards
         {
-            get
-            {
-                return _Cards;
-            }
+            get { return _Cards; }
             set
             {
                 _Cards = value;
@@ -38,11 +35,10 @@ namespace _3750BlackJack
         {
             get
             {
-                int count = 0;
-                int aces = 0;
-                foreach (Card card in Cards)
+                var count = 0;
+                var aces = 0;
+                foreach (var card in Cards)
                 {
-
                     if (card.Value == 1)
                     {
                         count += 11;
@@ -58,7 +54,6 @@ namespace _3750BlackJack
                     {
                         count += 10;
                     }
-
                 }
                 if (count > 21)
                 {
@@ -66,25 +61,23 @@ namespace _3750BlackJack
                 }
 
                 return count;
-
             }
         }
 
         #endregion // Properties
 
         #region Methods
-      
 
         #endregion // Methods
 
         #region INotifyPropertyChanged Members
 
         public event PropertyChangedEventHandler PropertyChanged;
+
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             try
             {
-
                 if (this.PropertyChanged != null)
                     this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
