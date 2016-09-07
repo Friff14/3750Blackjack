@@ -15,6 +15,7 @@ namespace _3750BlackJack
         public Hand()
         {
             _Cards = new ObservableCollection<Card>();
+            OnPropertyChanged("CountCardValues");
         }
 
         #region Properties
@@ -23,11 +24,15 @@ namespace _3750BlackJack
 
         public ObservableCollection<Card> Cards
         {
-            get { return _Cards; }
+            get
+            {
+                return _Cards;
+            }
             set
             {
                 _Cards = value;
                 OnPropertyChanged();
+                OnPropertyChanged("CountCardValues");
             }
         }
 
@@ -64,8 +69,9 @@ namespace _3750BlackJack
 
                 return count;
             }
+            set { }
         }
-
+        
         #endregion // Properties
 
         #region Methods

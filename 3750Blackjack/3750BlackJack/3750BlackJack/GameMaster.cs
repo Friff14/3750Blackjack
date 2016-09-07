@@ -16,6 +16,7 @@ namespace _3750BlackJack
         /// </summary>
         public GameMaster()
         {
+            Message = "Welcome!";
             BetInProgress = true;
             CardDeck = new Deck();
             Dealer = new Hand();
@@ -27,6 +28,19 @@ namespace _3750BlackJack
         }
 
         #region Properties
+        private string _Message;
+        public string Message
+        {
+            get
+            {
+                return _Message;
+            }
+            set
+            {
+                _Message = value;
+                OnPropertyChanged();
+            }
+        }
         private bool _BetInProgress;
         public bool BetInProgress
         {
@@ -165,6 +179,8 @@ namespace _3750BlackJack
         public void Begin()
         {
             BetInProgress = false;
+            Wallet -= CurrentBet;
+
             Dealer.Cards.Clear();
             Player.Cards.Clear();
             CardDeck.Shuffle();
@@ -181,28 +197,33 @@ namespace _3750BlackJack
         {
             var winner = false;
             var multiplier = 1.0;
-            if (_Player.CountCardValues > 21)
+            if (Player.CountCardValues > 21)
             {
                 winner = false;
+                Message = "You Busted!";
             }
-            else if (_Dealer.CountCardValues > 21)
+            else if (Dealer.CountCardValues > 21)
             {
                 winner = true;
                 multiplier = 1.5;
+                Message = "Dealer Busted!";
             }
-            else if (_Player.CountCardValues > Dealer.CountCardValues)
+            else if (Player.CountCardValues > Dealer.CountCardValues)
             {
                 winner = true;
                 multiplier = 1.5;
+                Message = "You Win!";
             }
-            else if (_Player.CountCardValues < Dealer.CountCardValues)
+            else if (Player.CountCardValues < Dealer.CountCardValues)
             {
                 winner = false;
+                Message = "Dealer Wins!";
             }
-            else if (_Player.CountCardValues == Dealer.CountCardValues)
+            else if (Player.CountCardValues == Dealer.CountCardValues)
             {
                 winner = true;
                 multiplier = 1;
+                Message = "Tie";
             }
             if (winner)
             {
@@ -237,15 +258,16 @@ namespace _3750BlackJack
             Player.Cards.Add(CardDeck.Draw(true));
 //            OnPropertyChanged("Player");
 
-            if (_Player.CountCardValues > 21)
+            if (Player.CountCardValues > 21)
                 Stay();
         }
 
         public void Stay()
         {
-            //TODO: dealers first card should now be visible
+
+            BetInProgress = true;
             Dealer.Cards[0].Visible = true;        
-            while (_Dealer.CountCardValues <= 16)
+            while (Dealer.CountCardValues <= 16)
             {
                 Dealer.Cards.Add(CardDeck.Draw(true));
                 OnPropertyChanged("Dealer");

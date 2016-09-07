@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_3750BlackJack"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="Black Jack (Group 4)" MinHeight="600" MinWidth="900" >
     <Window.DataContext>
@@ -148,7 +149,13 @@
                     </TextBlock.Text>
                 </TextBlock>
 
-                <TextBlock DockPanel.Dock="Right" Background="White" Width="100" Text="{Binding Path=Player.CountCardValues}"/>
+                <TextBlock DockPanel.Dock="Right" Background="White" Width="100" >
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="Current Hand: {0}">
+                            <Binding Path="Player.CountCardValues" Mode="OneWay" TargetNullValue="{x:Static sys:String.Empty}" NotifyOnSourceUpdated="True" UpdateSourceTrigger="PropertyChanged"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Button Height="50" Width="100" Margin="20" Click="Button_Hit">Hit</Button>
@@ -165,7 +172,8 @@
                     <Label.Content>
                         <TextBlock>
                             <TextBlock.Text>
-                                <MultiBinding StringFormat="Welcome!&#xD;&#xA;Please place a bet!&#xD;&#xA;Wallet: {0:C}">
+                                <MultiBinding StringFormat=" {0}&#xD;&#xA;Please place a bet!&#xD;&#xA;Wallet: {1:C}">
+                                    <Binding Path="Message"/>
                                     <Binding Path="Wallet"/>
                                 </MultiBinding>
                             </TextBlock.Text>
