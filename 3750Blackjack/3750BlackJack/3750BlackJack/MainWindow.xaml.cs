@@ -34,5 +34,10 @@ namespace _3750BlackJack
         {
             ((GameMaster)DataContext).Stay();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ((GameMaster)DataContext).Begin();
+        }
     }
 }

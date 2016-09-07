@@ -54,7 +54,19 @@ namespace _3750BlackJack
 
             }
         }
-        public bool Visible { get; set; }
+        private bool _Visible;
+        public bool Visible
+        {
+            get
+            {
+                return _Visible;
+            }
+            set
+            {
+                _Visible = value;
+                OnPropertyChanged();
+            }
+        }
 
         #region INotifyPropertyChanged Members
 

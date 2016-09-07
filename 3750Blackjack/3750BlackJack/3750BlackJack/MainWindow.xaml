@@ -4,14 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_3750BlackJack"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="Black Jack (Group 4)" MinHeight="600" MinWidth="900" Background="#FF166E08">
-
+        Title="Black Jack (Group 4)" MinHeight="600" MinWidth="900" >
     <Window.DataContext>
         <local:GameMaster/>
     </Window.DataContext>
 
     <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
         <DataTemplate x:Key="CardFront" DataType="{x:Type local:Card}">
 
             <Grid Background="White" Height="160" Width="118" Margin="2">
@@ -117,40 +118,64 @@
             </ContentControl>
         </DataTemplate>
     </Window.Resources>
+    <Grid Background="#FF3E3E3E">
 
-    <DockPanel LastChildFill="True">
-        <ItemsControl x:Name="DealerHand" DockPanel.Dock="Top" ItemsSource="{Binding Dealer.Cards}" Height="175">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <VirtualizingStackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-        </ItemsControl>
+        <Grid Background="#FF166E08">
+            <DockPanel LastChildFill="True">
+                <ItemsControl x:Name="DealerHand" DockPanel.Dock="Top" ItemsSource="{Binding Dealer.Cards}" Height="175">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
 
-        <ItemsControl x:Name="PlayerHand" DockPanel.Dock="Bottom" ItemsSource="{Binding Player.Cards}" Height="175">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <VirtualizingStackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-        </ItemsControl>
+                <ItemsControl x:Name="PlayerHand" DockPanel.Dock="Bottom" ItemsSource="{Binding Player.Cards}" Height="175">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
 
 
-        <TextBlock DockPanel.Dock="Left" Background="White" Width="100" >
-            <TextBlock.Text>
-                <MultiBinding StringFormat="Wallet: {0:C}
-                              Current Bet: {1:C}">
-                    <Binding Path="Wallet" />
-                    <Binding Path="CurrentBet" />
-                </MultiBinding>
-            </TextBlock.Text>
-        </TextBlock>
+                <TextBlock DockPanel.Dock="Left" Background="White" Width="100" >
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="Wallet: {0:C}&#xD;&#xA;Current Bet: {1:C}">
+                            <Binding Path="Wallet" />
+                            <Binding Path="CurrentBet" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
 
-        <TextBlock DockPanel.Dock="Right" Background="White" Width="100" Text="{Binding Path=Player.CountCardValues}"/>
+                <TextBlock DockPanel.Dock="Right" Background="White" Width="100" Text="{Binding Path=Player.CountCardValues}"/>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Height="50" Width="100" Margin="20" Click="Button_Hit">Hit</Button>
-            <Button Height="50" Width="100" Margin="20" Click="Button_Stay">Stand</Button>
-        </StackPanel>
-    </DockPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Button Height="50" Width="100" Margin="20" Click="Button_Hit">Hit</Button>
+                    <Button Height="50" Width="100" Margin="20" Click="Button_Stay">Stand</Button>
+                </StackPanel>
+            </DockPanel>
+        </Grid>
+        <Grid x:Name="BetView" Visibility="{Binding Path=BetInProgress, Converter={StaticResource BoolToVis} }" >
+            <Grid.Background>
+                <SolidColorBrush Color="Black" Opacity=".6" />
+            </Grid.Background>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Label HorizontalContentAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="22">
+                    <Label.Content>
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="Welcome!&#xD;&#xA;Please place a bet!&#xD;&#xA;Wallet: {0:C}">
+                                    <Binding Path="Wallet"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </Label.Content>
+                </Label>
+                <xctk:DoubleUpDown x:Name="txb_BetValue" Value="{Binding Path=CurrentBet}" HorizontalAlignment="Center" Increment=".01" Minimum="{Binding Path=MinBet}" Maximum="{Binding Path=MaxBet}" Width="127" Height="50" FontSize="22" TextAlignment="Center">
+                </xctk:DoubleUpDown>
+                <Button Content="Play" HorizontalAlignment="Center" Click="Button_Click" Height="50" Width="100" />
+            </StackPanel>
+        </Grid>
+    </Grid>
 </Window>

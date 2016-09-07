@@ -16,21 +16,30 @@ namespace _3750BlackJack
         /// </summary>
         public GameMaster()
         {
+            BetInProgress = true;
             CardDeck = new Deck();
-            CardDeck.Shuffle();
             Dealer = new Hand();
             Player = new Hand();
             Wallet = 1.00;
             MinBet = .02;
             MaxBet = .25;
-
-            Dealer.Cards.Add(CardDeck.Draw(false));
-            Dealer.Cards.Add(CardDeck.Draw(true));
-            Player.Cards.Add(CardDeck.Draw(true));
-            Player.Cards.Add(CardDeck.Draw(true));
+            CurrentBet = MinBet;
         }
 
         #region Properties
+        private bool _BetInProgress;
+        public bool BetInProgress
+        {
+            get
+            {
+                return _BetInProgress;
+            }
+            set
+            {
+                _BetInProgress = value;
+                OnPropertyChanged();
+            }
+        }
         private Deck CardDeck;
 
         private double _Wallet;
@@ -132,7 +141,14 @@ namespace _3750BlackJack
         {
             get
             {
-                return _MaxBet;
+                if (_MaxBet > Wallet)
+                {
+                    return Wallet;
+                }
+                else
+                {
+                    return _MaxBet;
+                }
             }
             set
             {
@@ -143,6 +159,21 @@ namespace _3750BlackJack
         #endregion //Properties
 
         #region Methods
+        /// <summary>
+        /// Resets the cards, score, and begins the game.
+        /// </summary>
+        public void Begin()
+        {
+            BetInProgress = false;
+            Dealer.Cards.Clear();
+            Player.Cards.Clear();
+            CardDeck.Shuffle();
+            Dealer.Cards.Add(CardDeck.Draw(false));
+            Dealer.Cards.Add(CardDeck.Draw(true));
+            Player.Cards.Add(CardDeck.Draw(true));
+            Player.Cards.Add(CardDeck.Draw(true));
+        }
+
         /// <summary>
         /// Totals the 2 hands and determines a winner. Initiates next round.
         /// </summary>
@@ -176,7 +207,9 @@ namespace _3750BlackJack
             if (winner)
             {
                 Wallet += multiplier * CurrentBet;
+                BetInProgress = true;
             }
+
 
         }
         public void Bet()
