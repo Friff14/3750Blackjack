@@ -148,46 +148,68 @@ namespace _3750BlackJack
         /// </summary>
         public void Resolve()
         {
-            if (_Player.Count() > 21)
+            if (_Player.Count > 21)
             {
                 //dealer wins
                 //return
             }
-            else if (_Dealer.Count() > 21)
+            else if (_Dealer.Count > 21)
             {
                 //player wins
                 //add bet * 1.5
                 //return
             }
-            else if (_Player.Count() > Dealer.Count())
+            else if (_Player.Count > Dealer.Count)
             {
                 //player wins
                 //add bet * 1.5
                 //return
             }
-            else if (_Player.Count() < Dealer.Count())
+            else if (_Player.Count < Dealer.Count)
             {
                 //dealer wins
                 //return
             }
-            else if (_Player.Count() == Dealer.Count())
+            else if (_Player.Count == Dealer.Count)
             {
                 //tie 
                 //add bet back to wallet
             }
+        }
+        public void Bet()
+        {
+            CurrentBet = 0.0; //set the current betting pool to zero to override any previous bets 
+            bool flag = false;
+
+            //need to ask for bet from player,   text box to ask?
+            //check for minimum and maximum bets
+            do
+            {
+                if (CurrentBet < MinBet || CurrentBet > MaxBet)
+                {
+                    //give warning and have them re-enter
+                    flag = true;
+                }
+            } while (flag != true);
+            
+            
+            //go to next stage
         }
 
         public void Hit()
         {
             Player.Cards.Add(CardDeck.Draw(true));
             OnPropertyChanged("Player");
+
+            if (_Player.Count > 21)
+                Stay();
         }
 
         public void Stay()
         {
             //TODO: dealers first card should now be visible
             Dealer.Cards[0].Visible = true;        
-            while (_Dealer.Count() <= 16)
+            while (_Dealer.Count <= 16)
             {
                 Dealer.Cards.Add(CardDeck.Draw(true));
                 OnPropertyChanged("Dealer");
