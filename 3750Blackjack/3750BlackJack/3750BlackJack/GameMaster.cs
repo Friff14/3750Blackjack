@@ -151,29 +151,31 @@ namespace _3750BlackJack
             if (_Player.Count > 21)
             {
                 //dealer wins
-                //return
+                return;
             }
             else if (_Dealer.Count > 21)
             {
                 //player wins
-                //add bet * 1.5
-                //return
+                Wallet += (CurrentBet * 1.5);
+                return;
             }
             else if (_Player.Count > Dealer.Count)
             {
                 //player wins
                 //add bet * 1.5
-                //return
+                Wallet += (CurrentBet * 1.5);
+                return;
             }
             else if (_Player.Count < Dealer.Count)
             {
                 //dealer wins
-                //return
+                return;
             }
             else if (_Player.Count == Dealer.Count)
             {
                 //tie 
                 //add bet back to wallet
+                Wallet += CurrentBet;
             }
         }
         public void Bet()
