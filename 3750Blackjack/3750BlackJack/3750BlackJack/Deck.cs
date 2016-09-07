@@ -17,6 +17,7 @@ namespace _3750BlackJack
             BuildDeck();
         }
         #region Properties
+
         
         /// <summary>
         /// Represents a deck of cards
