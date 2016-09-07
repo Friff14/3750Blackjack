@@ -150,25 +150,25 @@ namespace _3750BlackJack
         {
             var winner = false;
             var multiplier = 1.0;
-            if (_Player.Count > 21)
+            if (_Player.CountCardValues > 21)
             {
                 winner = false;
             }
-            else if (_Dealer.Count > 21)
+            else if (_Dealer.CountCardValues > 21)
             {
                 winner = true;
                 multiplier = 1.5;
             }
-            else if (_Player.Count > Dealer.Count)
+            else if (_Player.CountCardValues > Dealer.CountCardValues)
             {
                 winner = true;
                 multiplier = 1.5;
             }
-            else if (_Player.Count < Dealer.Count)
+            else if (_Player.CountCardValues < Dealer.CountCardValues)
             {
                 winner = false;
             }
-            else if (_Player.Count == Dealer.Count)
+            else if (_Player.CountCardValues == Dealer.CountCardValues)
             {
                 winner = true;
                 multiplier = 1;
@@ -202,9 +202,9 @@ namespace _3750BlackJack
         public void Hit()
         {
             Player.Cards.Add(CardDeck.Draw(true));
-            OnPropertyChanged("Player");
+//            OnPropertyChanged("Player");
 
-            if (_Player.Count > 21)
+            if (_Player.CountCardValues > 21)
                 Stay();
         }
 
@@ -212,7 +212,7 @@ namespace _3750BlackJack
         {
             //TODO: dealers first card should now be visible
             Dealer.Cards[0].Visible = true;        
-            while (_Dealer.Count <= 16)
+            while (_Dealer.CountCardValues <= 16)
             {
                 Dealer.Cards.Add(CardDeck.Draw(true));
                 OnPropertyChanged("Dealer");

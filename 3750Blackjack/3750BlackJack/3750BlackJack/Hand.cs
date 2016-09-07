@@ -31,7 +31,7 @@ namespace _3750BlackJack
             }
         }
 
-        public int Count
+        public int CountCardValues
         {
             get
             {
@@ -50,12 +50,12 @@ namespace _3750BlackJack
                         count += card.Value;
                     }
 
-                    else if (card.Value > 10)
+                    else if (card.Value >= 10)
                     {
                         count += 10;
                     }
                 }
-                while (count > 21)
+                while (count > 21 && aces > 0)
                 {
                     if (aces <= 0) continue;
                     count -= 10;
