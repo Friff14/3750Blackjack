@@ -26,7 +26,7 @@
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
 
-                <TextBox  Text="{Binding Path=Value}" Grid.Column="0" Grid.Row="0" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" TextAlignment="Center" IsReadOnly="True" Cursor="Arrow" IsTabStop="False" Focusable="False" SelectionBrush="{x:Null}" SelectionOpacity="0" BorderThickness="0">
+                <TextBox  Text="{Binding Path=FaceValue}" Grid.Column="0" Grid.Row="0" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" TextAlignment="Center" IsReadOnly="True" Cursor="Arrow" IsTabStop="False" Focusable="False" SelectionBrush="{x:Null}" SelectionOpacity="0" BorderThickness="0">
                     <TextBox.Style>
                         <Style TargetType="{x:Type TextBox}">
                             <Style.Triggers>
@@ -74,7 +74,7 @@
                     </Image.Style>
                 </Image>
 
-                <TextBox  Text="{Binding Path=Value}" Grid.Column="2" Grid.Row="2" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" TextAlignment="Center" IsReadOnly="True" Cursor="Arrow" IsTabStop="False" Focusable="False" SelectionBrush="{x:Null}" SelectionOpacity="0" BorderThickness="0">
+                <TextBox  Text="{Binding Path=FaceValue}" Grid.Column="2" Grid.Row="2" Background="{x:Null}" BorderBrush="{x:Null}" FontSize="30" TextAlignment="Center" IsReadOnly="True" Cursor="Arrow" IsTabStop="False" Focusable="False" SelectionBrush="{x:Null}" SelectionOpacity="0" BorderThickness="0">
                     <TextBox.Style>
                         <Style TargetType="{x:Type TextBox}">
                             <Style.Triggers>
