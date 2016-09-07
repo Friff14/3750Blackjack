@@ -148,35 +148,36 @@ namespace _3750BlackJack
         /// </summary>
         public void Resolve()
         {
+            var winner = false;
+            var multiplier = 1.0;
             if (_Player.Count > 21)
             {
-                //dealer wins
-                return;
+                winner = false;
             }
             else if (_Dealer.Count > 21)
             {
-                //player wins
-                Wallet += (CurrentBet * 1.5);
-                return;
+                winner = true;
+                multiplier = 1.5;
             }
             else if (_Player.Count > Dealer.Count)
             {
-                //player wins
-                //add bet * 1.5
-                Wallet += (CurrentBet * 1.5);
-                return;
+                winner = true;
+                multiplier = 1.5;
             }
             else if (_Player.Count < Dealer.Count)
             {
-                //dealer wins
-                return;
+                winner = false;
             }
             else if (_Player.Count == Dealer.Count)
             {
-                //tie 
-                //add bet back to wallet
-                Wallet += CurrentBet;
+                winner = true;
+                multiplier = 1;
             }
+            if (winner)
+            {
+                Wallet += multiplier * CurrentBet;
+            }
+
         }
         public void Bet()
         {
@@ -216,6 +217,7 @@ namespace _3750BlackJack
                 Dealer.Cards.Add(CardDeck.Draw(true));
                 OnPropertyChanged("Dealer");
             }
+            Resolve();
         }
         #endregion // Methods
 
