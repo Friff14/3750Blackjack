@@ -40,7 +40,7 @@ namespace _3750BlackJack
                 foreach (var card in Cards)
                 {
                     if (card.Value == 1)
-                    {
+                     {
                         count += 11;
                         aces++;
                     }

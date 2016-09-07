@@ -175,7 +175,7 @@ namespace _3750BlackJack
             }
             if (winner)
             {
-                _Wallet += multiplier * CurrentBet;
+                Wallet += multiplier * CurrentBet;
             }
 
         }
