@@ -55,9 +55,11 @@ namespace _3750BlackJack
                         count += 10;
                     }
                 }
-                if (count > 21)
+                while (count > 21)
                 {
-                    count -= 10 * aces;
+                    if (aces <= 0) continue;
+                    count -= 10;
+                    aces--;
                 }
 
                 return count;
