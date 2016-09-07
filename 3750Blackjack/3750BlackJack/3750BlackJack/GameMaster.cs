@@ -200,6 +200,9 @@ namespace _3750BlackJack
         {
             Player.Cards.Add(CardDeck.Draw(true));
             OnPropertyChanged("Player");
+
+            if (_Player.Count > 21)
+                Stay();
         }
 
         public void Stay()
