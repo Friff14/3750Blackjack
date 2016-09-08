@@ -1,27 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _3750BlackJack
 {
     class Hand : INotifyPropertyChanged
     {
+        #region Constructor
+        /// <summary>
+        /// Default Constructor
+        /// </summary>
         public Hand()
         {
             _Cards = new ObservableCollection<Card>();
             OnPropertyChanged("CountCardValues");
         }
+        #endregion //Constructor
 
         #region Properties
 
+        /// <summary>
+        /// Collection of Cards
+        /// </summary>
         private ObservableCollection<Card> _Cards;
-
         public ObservableCollection<Card> Cards
         {
             get
@@ -36,6 +39,9 @@ namespace _3750BlackJack
             }
         }
 
+        /// <summary>
+        /// Card value count
+        /// </summary>
         public int CountCardValues
         {
             get
@@ -80,8 +86,10 @@ namespace _3750BlackJack
 
         #region INotifyPropertyChanged Members
 
+        /// <summary>
+        /// Property Changed Event Handler
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
-
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             try
@@ -94,7 +102,6 @@ namespace _3750BlackJack
                 throw new Exception(MethodBase.GetCurrentMethod().Name + "() -> " + ex.Message);
             }
         }
-
         #endregion
     }
 }

@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _3750BlackJack
 {
     class Deck
     {
+        #region Constructor
         /// <summary>
         /// Default Constructor
         /// </summary>
@@ -16,14 +14,14 @@ namespace _3750BlackJack
             Cards = new List<Card>();
             BuildDeck();
         }
+        #endregion //Constructor
+
         #region Properties
 
-        
         /// <summary>
         /// Represents a deck of cards
         /// </summary>
         private List<Card> Cards { get; set; }
-
         #endregion //Properties
 
         #region Methods
@@ -102,7 +100,6 @@ namespace _3750BlackJack
                 deck[n] = temp;
             }
         }
-
         #endregion //Methods
     }
 }

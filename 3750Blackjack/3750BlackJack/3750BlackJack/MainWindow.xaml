@@ -165,7 +165,7 @@
         </Grid>
         <Grid x:Name="BetView" Visibility="{Binding Path=BetInProgress, Converter={StaticResource BoolToVis} }" >
             <Grid.Background>
-                <SolidColorBrush Color="Black" Opacity=".6" />
+                <SolidColorBrush Color="Black" Opacity=".7" />
             </Grid.Background>
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Label HorizontalContentAlignment="Center" HorizontalAlignment="Center" Foreground="White" FontSize="22">

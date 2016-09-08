@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _3750BlackJack
 {
     class GameMaster : INotifyPropertyChanged
     {
+        #region Constructor
         /// <summary>
         /// Consturctor for GameMaster object
         /// </summary>
@@ -26,8 +23,18 @@ namespace _3750BlackJack
             MaxBet = .25;
             CurrentBet = MinBet;
         }
+        #endregion //constructor
 
         #region Properties
+
+        /// <summary>
+        /// Deck of Cards
+        /// </summary>
+        private Deck CardDeck;
+
+        /// <summary>
+        /// Message Property
+        /// </summary>
         private string _Message;
         public string Message
         {
@@ -41,6 +48,10 @@ namespace _3750BlackJack
                 OnPropertyChanged();
             }
         }
+
+        /// <summary>
+        /// Bet In Progress
+        /// </summary>
         private bool _BetInProgress;
         public bool BetInProgress
         {
@@ -54,13 +65,12 @@ namespace _3750BlackJack
                 OnPropertyChanged();
             }
         }
-        private Deck CardDeck;
-
-        private double _Wallet;
+        
 
         /// <summary>
         /// The amount of money the player currently has avaliable
         /// </summary>
+        private double _Wallet;
         public double Wallet
         {
             get
@@ -75,11 +85,10 @@ namespace _3750BlackJack
 
         }
 
-        private double _CurrentBet;
-
         /// <summary>
-        /// The amount of the current bet;
+        /// The amount of the current bet
         /// </summary>
+        private double _CurrentBet;
         public double CurrentBet
         {
             get
@@ -93,11 +102,10 @@ namespace _3750BlackJack
             }
         }
 
-        private Hand _Player;
-
         /// <summary>
         /// The player's hand
         /// </summary>
+        private Hand _Player;
         public Hand Player
         {
             get
@@ -111,10 +119,10 @@ namespace _3750BlackJack
             }
         }
 
-        private Hand _Dealer;
         /// <summary>
         /// The dealer's hand
         /// </summary>
+        private Hand _Dealer;
         public Hand Dealer
         {
             get
@@ -128,11 +136,10 @@ namespace _3750BlackJack
             }
         }
 
-        private double _MinBet;
-
         /// <summary>
         /// The value of the minimum allowable bet.
         /// </summary>
+        private double _MinBet;
         public double MinBet
         {
             get
@@ -146,11 +153,10 @@ namespace _3750BlackJack
             }
         }
 
-        private double _MaxBet;
-
         /// <summary>
         /// The value of the maximum allowable bet.
         /// </summary>
+        private double _MaxBet;
         public double MaxBet
         {
             get
@@ -234,6 +240,9 @@ namespace _3750BlackJack
 
         }
 
+        /// <summary>
+        /// When the player decides to hit
+        /// </summary>
         public void Hit()
         {
             Player.Cards.Add(CardDeck.Draw(true));
@@ -243,6 +252,9 @@ namespace _3750BlackJack
                 Stay();
         }
 
+        /// <summary>
+        /// when the player decides to stay
+        /// </summary>
         public void Stay()
         {
 
@@ -259,6 +271,9 @@ namespace _3750BlackJack
 
         #region INotifyPropertyChanged Members
 
+        /// <summary>
+        /// Property Changed Event Handler
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {

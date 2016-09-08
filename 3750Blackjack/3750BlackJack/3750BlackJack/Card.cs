@@ -1,16 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _3750BlackJack
 {
     class Card : INotifyPropertyChanged
     {
+        #region Properties
+        /// <summary>
+        /// Card Suit enumeration
+        /// </summary>
         public enum CardSuit
         {
             Spade,
@@ -19,7 +19,14 @@ namespace _3750BlackJack
             Diamond
         }
 
+        /// <summary>
+        /// Card Suit Property
+        /// </summary>
         public CardSuit Suit { get; set; }
+
+        /// <summary>
+        /// Value Property
+        /// </summary>
         private int _Value;
         public int Value
         {
@@ -34,6 +41,10 @@ namespace _3750BlackJack
                 OnPropertyChanged("FaceValue");
             }
         }
+
+        /// <summary>
+        /// FaceValue. Face values for determining Face Cards
+        /// </summary>
         public string FaceValue
         {
             get
@@ -54,6 +65,9 @@ namespace _3750BlackJack
 
             }
         }
+        /// <summary>
+        /// _Visible Property
+        /// </summary>
         private bool _Visible;
         public bool Visible
         {
@@ -67,10 +81,19 @@ namespace _3750BlackJack
                 OnPropertyChanged();
             }
         }
+        #endregion // Properties
 
         #region INotifyPropertyChanged Members
 
+        /// <summary>
+        /// Property Changed Event Handler
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Property Changed Event Handler
+        /// </summary>
+        /// <param name="propertyName"></param>
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
             try
@@ -84,7 +107,6 @@ namespace _3750BlackJack
                 throw new Exception(MethodBase.GetCurrentMethod().Name + "() -> " + ex.Message);
             }
         }
-
         #endregion
     }
 }

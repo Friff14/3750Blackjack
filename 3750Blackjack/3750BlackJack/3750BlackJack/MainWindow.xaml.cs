@@ -1,17 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace _3750BlackJack
 {
@@ -20,21 +7,39 @@ namespace _3750BlackJack
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// Main Window Constructor
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Hit Button Method
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_Hit(object sender, RoutedEventArgs e)
         {
             ((GameMaster)DataContext).Hit();
         }
 
+        /// <summary>
+        /// Stay Button Method
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_Stay(object sender, RoutedEventArgs e)
         {
             ((GameMaster)DataContext).Stay();
         }
 
+        /// <summary>
+        /// Begin Button Method
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             ((GameMaster)DataContext).Begin();
