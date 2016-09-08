@@ -233,25 +233,6 @@ namespace _3750BlackJack
 
 
         }
-        public void Bet()
-        {
-            CurrentBet = 0.0; //set the current betting pool to zero to override any previous bets 
-            bool flag = false;
-
-            //need to ask for bet from player,   text box to ask?
-            //check for minimum and maximum bets
-            do
-            {
-                if (CurrentBet < MinBet || CurrentBet > MaxBet)
-                {
-                    //give warning and have them re-enter
-                    flag = true;
-                }
-            } while (flag != true);
-            
-            
-            //go to next stage
-        }
 
         public void Hit()
         {
