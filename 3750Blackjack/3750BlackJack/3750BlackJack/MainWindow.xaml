@@ -180,7 +180,7 @@
                         </TextBlock>
                     </Label.Content>
                 </Label>
-                <xctk:DoubleUpDown x:Name="txb_BetValue" Value="{Binding Path=CurrentBet}" HorizontalAlignment="Center" Increment=".01" Minimum="{Binding Path=MinBet}" Maximum="{Binding Path=MaxBet}" Width="127" Height="50" FontSize="22" TextAlignment="Center">
+                <xctk:DoubleUpDown x:Name="txb_BetValue" Value="{Binding Path=CurrentBet}" HorizontalAlignment="Center" Increment=".01" Minimum="{Binding Path=MinBet}" Maximum="{Binding Path=MaxBet}" Width="127" Height="50" FontSize="22" TextAlignment="Center" IsReadOnly="True">
                 </xctk:DoubleUpDown>
                 <Button Content="Play" HorizontalAlignment="Center" Click="Button_Click" Height="50" Width="100" />
             </StackPanel>
