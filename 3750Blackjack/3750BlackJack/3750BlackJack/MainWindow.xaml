@@ -152,7 +152,7 @@
                 <TextBlock DockPanel.Dock="Right" Background="White" Width="100" >
                     <TextBlock.Text>
                         <MultiBinding StringFormat="Current Hand: {0}">
-                            <Binding Path="Player.CountCardValues" Mode="OneWay" TargetNullValue="{x:Static sys:String.Empty}" NotifyOnSourceUpdated="True" UpdateSourceTrigger="PropertyChanged"/>
+                            <Binding Path="Player.CountCardValues"/>
                         </MultiBinding>
                     </TextBlock.Text>
                 </TextBlock>
@@ -180,7 +180,7 @@
                         </TextBlock>
                     </Label.Content>
                 </Label>
-                <xctk:DoubleUpDown x:Name="txb_BetValue" Value="{Binding Path=CurrentBet}" HorizontalAlignment="Center" Increment=".01" Minimum="{Binding Path=MinBet}" Maximum="{Binding Path=MaxBet}" Width="127" Height="50" FontSize="22" TextAlignment="Center" IsReadOnly="True">
+                <xctk:DoubleUpDown x:Name="txb_BetValue" Value="{Binding Path=CurrentBet}" HorizontalAlignment="Center" Increment=".01" Minimum="{Binding Path=MinBet}" Maximum="{Binding Path=MaxBet}" Width="127" Height="50" FontSize="22" TextAlignment="Center">
                 </xctk:DoubleUpDown>
                 <Button Content="Play" HorizontalAlignment="Center" Click="Button_Click" Height="50" Width="100" />
             </StackPanel>

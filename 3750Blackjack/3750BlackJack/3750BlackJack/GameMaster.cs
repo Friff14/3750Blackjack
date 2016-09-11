@@ -26,7 +26,19 @@ namespace _3750BlackJack
         #endregion //constructor
 
         #region Properties
-
+        private int _Score;
+        public int Score
+        {
+            get
+            {
+                return _Score;
+            }
+            set
+            {
+                _Score = value;
+                OnPropertyChanged();
+            }
+        }
         /// <summary>
         /// Deck of Cards
         /// </summary>
@@ -116,6 +128,7 @@ namespace _3750BlackJack
             {
                 _Player = value;
                 OnPropertyChanged();
+                OnPropertyChanged("Score");
             }
         }
 
@@ -194,6 +207,8 @@ namespace _3750BlackJack
             Dealer.Cards.Add(CardDeck.Draw(true));
             Player.Cards.Add(CardDeck.Draw(true));
             Player.Cards.Add(CardDeck.Draw(true));
+            OnPropertyChanged("Dealer");
+            OnPropertyChanged("Player");
         }
 
         /// <summary>
@@ -236,7 +251,8 @@ namespace _3750BlackJack
                 Wallet += multiplier * CurrentBet;
                 BetInProgress = true;
             }
-
+            OnPropertyChanged("MaxBet");
+            OnPropertyChanged("Wallet");
 
         }
 
@@ -246,7 +262,8 @@ namespace _3750BlackJack
         public void Hit()
         {
             Player.Cards.Add(CardDeck.Draw(true));
-//            OnPropertyChanged("Player");
+            OnPropertyChanged("Player");
+            //Score = Player.CountCardValues;
 
             if (Player.CountCardValues > 21)
                 Stay();
