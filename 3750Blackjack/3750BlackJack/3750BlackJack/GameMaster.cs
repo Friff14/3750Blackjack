@@ -14,6 +14,7 @@ namespace _3750BlackJack
         public GameMaster()
         {
             Message = "Welcome!";
+            PlayAllowed = true;
             BetInProgress = true;
             CardDeck = new Deck();
             Dealer = new Hand();
@@ -26,16 +27,17 @@ namespace _3750BlackJack
         #endregion //constructor
 
         #region Properties
-        private int _Score;
-        public int Score
+
+        private bool _PlayAllowed;
+        public bool PlayAllowed
         {
             get
             {
-                return _Score;
+                return _PlayAllowed;
             }
             set
             {
-                _Score = value;
+                _PlayAllowed = value;
                 OnPropertyChanged();
             }
         }
@@ -253,6 +255,15 @@ namespace _3750BlackJack
             }
             OnPropertyChanged("MaxBet");
             OnPropertyChanged("Wallet");
+            if(Wallet < MinBet)
+            {
+                PlayAllowed = false;
+                Message = "You went broke!";
+            }
+            if(CurrentBet > MaxBet)
+            {
+                CurrentBet = MaxBet;
+            }
 
         }
 
@@ -265,8 +276,11 @@ namespace _3750BlackJack
             OnPropertyChanged("Player");
             //Score = Player.CountCardValues;
 
-            if (Player.CountCardValues > 21)
+            if (Player.CountCardValues >= 21)
+            {
                 Stay();
+            }
+            
         }
 
         /// <summary>
