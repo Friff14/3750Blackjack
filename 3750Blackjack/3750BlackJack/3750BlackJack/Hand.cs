@@ -50,25 +50,27 @@ namespace _3750BlackJack
                 var aces = 0;
                 foreach (var card in Cards)
                 {
-                    if (card.Value == 1)
-                     {
-                        count += 11;
-                        aces++;
-                    }
-
-                    else if (card.Value < 10 && card.Value > 1)
+                    if (card.Visible)
                     {
-                        count += card.Value;
-                    }
+                        if (card.Value == 1)
+                        {
+                            count += 11;
+                            aces++;
+                        }
 
-                    else if (card.Value >= 10)
-                    {
-                        count += 10;
+                        else if (card.Value < 10 && card.Value > 1)
+                        {
+                            count += card.Value;
+                        }
+
+                        else if (card.Value >= 10)
+                        {
+                            count += 10;
+                        }
                     }
                 }
                 while (count > 21 && aces > 0)
                 {
-                    if (aces <= 0) continue;
                     count -= 10;
                     aces--;
                 }

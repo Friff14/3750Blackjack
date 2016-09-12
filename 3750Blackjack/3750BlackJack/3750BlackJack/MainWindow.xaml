@@ -123,24 +123,8 @@
 
         <Grid Background="#FF166E08">
             <DockPanel LastChildFill="True">
-                <ItemsControl x:Name="DealerHand" DockPanel.Dock="Top" ItemsSource="{Binding Dealer.Cards}" Height="175">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <VirtualizingStackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                </ItemsControl>
 
-                <ItemsControl x:Name="PlayerHand" DockPanel.Dock="Bottom" ItemsSource="{Binding Player.Cards}" Height="175">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <VirtualizingStackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                </ItemsControl>
-
-
-                <TextBlock DockPanel.Dock="Left" Background="White" Width="100" >
+                <TextBlock DockPanel.Dock="Left" Foreground="White" FontSize="20" Width="175" VerticalAlignment="Center">
                     <TextBlock.Text>
                         <MultiBinding StringFormat="Wallet: {0:C}&#xD;&#xA;Current Bet: {1:C}">
                             <Binding Path="Wallet" />
@@ -149,14 +133,47 @@
                     </TextBlock.Text>
                 </TextBlock>
 
-                <TextBlock DockPanel.Dock="Right" Background="White" Width="100" >
-                    <TextBlock.Text>
-                        <MultiBinding StringFormat="Current Hand: {0}">
-                            <Binding Path="Player.CountCardValues"/>
-                        </MultiBinding>
-                    </TextBlock.Text>
-                </TextBlock>
 
+                <DockPanel DockPanel.Dock="Right" Width="175" LastChildFill="True">
+                    <TextBlock DockPanel.Dock="Top" Foreground="White" FontSize="20" VerticalAlignment="Center">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="Dealer Hand: {0}">
+                                <Binding Path="Dealer.CountCardValues"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock DockPanel.Dock="Bottom" Foreground="White" FontSize="20" VerticalAlignment="Center">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="Current Hand: {0}">
+                                <Binding Path="Player.CountCardValues"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+
+                    <TextBlock></TextBlock>
+                </DockPanel>
+
+                <DockPanel DockPanel.Dock="Top">
+                    <ItemsControl x:Name="DealerHand" DockPanel.Dock="Left" ItemsSource="{Binding Dealer.Cards}" Height="175">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </DockPanel>
+
+                <DockPanel DockPanel.Dock="Bottom">
+                    <ItemsControl x:Name="PlayerHand" DockPanel.Dock="Left" ItemsSource="{Binding Player.Cards}" Height="175">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </DockPanel>
+                
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Button Height="50" Width="100" Margin="20" Click="Button_Hit">Hit</Button>
                     <Button Height="50" Width="100" Margin="20" Click="Button_Stay">Stand</Button>
